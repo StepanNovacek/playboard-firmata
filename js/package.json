@@ -1,0 +1,19 @@
+{
+    "name": "firmata",
+    "version": "1.0.0",
+    "description": "Firmata with user Sysex commands example",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node ./index.js",
+        "dev": "nodemon ./index.js"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "johnny-five": "^0.10.6"
+    },
+    "devDependencies": {
+        "nodemon": "1.9.2"
+    }
+}
