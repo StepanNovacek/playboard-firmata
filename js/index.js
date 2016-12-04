@@ -13,7 +13,7 @@ var encode = function(string) {
 }
 
 var sendSysex = function(command, _data) {
-    data = [0x01].concat(encode(_data));
+    data = [command].concat(encode(_data));
     board.sysexCommand(data);
 }
 
@@ -25,9 +25,28 @@ board.on("ready", function() {
     // Create a standard `led` component instance
     var led = new five.Led(13);
 
-    // "blink" the led in 500ms
-    // on-off phase periods
-    led.blink(500);
+
+    var button = new five.Button({
+        pin: 2,
+        isPullup: true
+    });
+
+    this.repl.inject({
+        led: led,
+        button: button
+    });
+
+
+    button.on("down", function(value) {
+        led.blink(500);
+        console.log("Button down");
+    });
+
+    button.on("up", function() {
+        console.log("Button up");
+        led.stop();
+        led.off();
+    });
 
     board.sysexResponse(0x01, function(data) {
         var string = new Buffer(data).toString("utf8").replace(/\0/g, "");
