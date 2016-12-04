@@ -819,7 +819,7 @@ void setup()
   // Firmata.begin(Serial1);
   // However do not do this if you are using SERIAL_MESSAGE
 
-  SerialUSB.begin(11520);
+  SerialUSB.begin(115200);
   Firmata.begin(SerialUSB);
   while (!SerialUSB) {
     ; // wait for serial port to connect. Needed for ATmega32u4-based boards and Arduino 101
