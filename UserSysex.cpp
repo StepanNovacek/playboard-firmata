@@ -1,3 +1,5 @@
+#include <Boards.h>
+#include "PlayBoard.h"
 #include <Firmata.h>
 
 #include "UserSysex.h"

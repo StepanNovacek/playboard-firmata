@@ -23,35 +23,49 @@ board.on("string", function(s) {
 
 board.on("ready", function() {
     // Create a standard `led` component instance
-    var led = new five.Led(13);
+    var led = new five.Led(25);
 
 
-    var button = new five.Button({
-        pin: 2,
-        isPullup: true
+    var bSW3 = new five.Button({
+        pin: 30,
+        isPullup: true,
+    });
+
+    var bSW4 = new five.Button({
+        pin: 31,
+        isPullup: true,
     });
 
     this.repl.inject({
         led: led,
-        button: button
+        bSW3: bSW3,
+        bSW4: bSW4
     });
 
-
-    button.on("down", function(value) {
+    bSW3.on("down", function() {
         led.blink(500);
-        console.log("Button down");
+        console.log("Button SW3 down");
     });
 
-    button.on("up", function() {
-        console.log("Button up");
+    bSW3.on("up", function() {
+        console.log("Button SW3 up");
+    });
+
+    bSW4.on("down", function() {
         led.stop();
         led.off();
+        console.log("Button SW4 down");
     });
+
+    bSW4.on("up", function() {
+        console.log("Button SW4 up");
+    });
+
 
     board.sysexResponse(0x01, function(data) {
         var string = new Buffer(data).toString("utf8").replace(/\0/g, "");
         console.log("Sysex received: " + string);
     });
 
-    sendSysex(0x01, "Ahoj svete")
+    sendSysex(0x01, "Hello World")
 });
