@@ -3,6 +3,7 @@
 #include <Firmata.h>
 
 #include "UserSysex.h"
+#include "RF.h"
 
 char buffer[MAX_DATA_BYTES ];
 
@@ -39,7 +40,12 @@ void userSysex(byte command, byte argc, byte *argv) {
       encodeToBuffer(argc, argv);
       Firmata.sendSysex(USR_CMD_ECHO, strlen(buffer), (byte *)buffer);
       break;
-    case 0x02:
+    case USR_CMD_RF:
+      encodeToBuffer(argc, argv);
+      if (!rfSend((uint8_t*)buffer)) {
+        Firmata.sendString("Unable to send data via Radio");
+      }
+      break;
     case 0x03:
     case 0x04:
     case 0x05:

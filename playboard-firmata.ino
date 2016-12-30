@@ -56,6 +56,7 @@
 #include "utility/SerialFirmata.h"
 
 #include "UserSysex.h"
+#include "RF.h"
 
 #define I2C_WRITE                   B00000000
 #define I2C_READ                    B00001000
@@ -829,6 +830,12 @@ void setup()
   }
 
   systemResetCallback();  // reset to default config
+
+  // Initialize Radio
+  if (!rfInit()) {
+    Firmata.sendString("Unable to initialize radio");
+    while (true) {}
+  }
 }
 
 /*==============================================================================
@@ -872,4 +879,8 @@ void loop()
 #ifdef FIRMATA_SERIAL_FEATURE
   serialFeature.update();
 #endif
+
+  if (rfAvailable()) {
+    rfRecv();
+  }
 }

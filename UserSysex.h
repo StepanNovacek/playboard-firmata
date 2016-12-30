@@ -2,7 +2,7 @@
 // User Sysex Commands
 
 #define USR_CMD_ECHO      0x01 // Send the same data back with the same sysex command
-#define USR_CMD_2         0x02 // User command
+#define USR_CMD_RF        0x02 // Radio transmition
 #define USR_CMD_3         0x03 // User command
 #define USR_CMD_4         0x04 // User command
 #define USR_CMD_5         0x05 // User command

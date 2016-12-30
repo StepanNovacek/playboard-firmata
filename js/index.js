@@ -45,6 +45,7 @@ board.on("ready", function() {
     bSW3.on("down", function() {
         led.blink(500);
         console.log("Button SW3 down");
+        sendSysex(0x02, "SW3 button");
     });
 
     bSW3.on("up", function() {
@@ -55,6 +56,7 @@ board.on("ready", function() {
         led.stop();
         led.off();
         console.log("Button SW4 down");
+        sendSysex(0x02, "SW4 button");
     });
 
     bSW4.on("up", function() {
