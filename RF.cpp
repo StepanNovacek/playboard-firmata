@@ -3,7 +3,7 @@
 #include <Firmata.h>
 
 #include <SPI.h>
-#include <RH_RF69.h>
+#include <RH_RF69.h>  // http://www.airspayce.com/mikem/arduino/RadioHead/index.html
 
 #include "RF.h"
 #include "UserSysex.h"
