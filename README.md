@@ -1,2 +1,3 @@
-# CustomFirmata
-Example of Firmata with user defined Sysex commands
+# IOTA Play Board Firmata
+Implementation of StandardFirmataPlus for IOTA Play Board with custom Sysex commands
+
